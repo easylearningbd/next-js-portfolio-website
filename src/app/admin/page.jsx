@@ -5,9 +5,10 @@ import AdminEducationView from "@/components/admin-view/education"
 import AdminExperienceView from "@/components/admin-view/experience"
 import AdminHomeView from "@/components/admin-view/home"
 import AdminProjectView from "@/components/admin-view/project"
+import { useState } from "react"
 
 export default function AdminView(){
-
+    const [currentSeletedTab, setCurrentSeletedTab] = useState('home');
     const menuItem = [
         {
             id: 'home',
@@ -49,14 +50,19 @@ export default function AdminView(){
                 key={item.id}
                 type="button"
                 className="p-4 font-bold text-xl text-black"
+                onClick={() => {
+                    setCurrentSeletedTab(item.id);
+                }}
                 >
                     {item.lable}
                 </button>
               ))} 
             </nav>
             <div className="mt-10 p-10">
-
-            </div>
+    {
+      menuItem.map(item => item.id === currentSeletedTab && item.component )  
+    }
+           </div>
         
         </div>
     )
