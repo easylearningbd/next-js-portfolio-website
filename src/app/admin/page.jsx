@@ -5,6 +5,7 @@ import AdminEducationView from "@/components/admin-view/education"
 import AdminExperienceView from "@/components/admin-view/experience"
 import AdminHomeView from "@/components/admin-view/home"
 import AdminProjectView from "@/components/admin-view/project"
+import { addData } from "@/services"
 import { useState } from "react"
 
 const initialHomeFormData = {
@@ -47,12 +48,13 @@ export default function AdminView(){
     const [projectViewFormData, setProjectViewFormData] = useState(initialProjectFormData);
  
     const menuItem = [
-        {
+        { 
             id: 'home',
             lable: 'Home',
             component: <AdminHomeView
             formData = {homeViewFormData}
             setFormData = {setHomeViewFormData}
+            handleSaveData={handleSaveData}
             />
         },
         {
@@ -61,6 +63,7 @@ export default function AdminView(){
             component: <AdminAboutView 
             formData = {aboutViewFormData}
             setFormData = {setAboutViewFormData}
+            handleSaveData={handleSaveData}
             />
         },
         {
@@ -69,6 +72,7 @@ export default function AdminView(){
             component: <AdminExperienceView 
             formData = {experinceViewFormData}
             setFormData = {setExperinceViewFormData}
+            handleSaveData={handleSaveData}
             />
         },
         {
@@ -77,6 +81,7 @@ export default function AdminView(){
             component: <AdminEducationView 
             formData = {educationViewFormData}
             setFormData = {setEducationViewFormData}
+            handleSaveData={handleSaveData}
             />
         },
         {
@@ -85,6 +90,7 @@ export default function AdminView(){
             component: <AdminProjectView 
             formData = {projectViewFormData}
             setFormData = {setProjectViewFormData}
+            handleSaveData={handleSaveData}
             />
         },
         {
@@ -93,6 +99,20 @@ export default function AdminView(){
             component: <AdminContactView/>
         }
     ]
+
+    async function handleSaveData(){
+        const dataMap = {
+            home: homeViewFormData,
+            about: aboutViewFormData,
+            experience: experinceViewFormData,
+            education: educationViewFormData,
+            project: projectViewFormData,
+        };
+
+        const response = await addData(currentSeletedTab,dataMap[currentSeletedTab]);
+        console.log(response, "response");
+        
+    }
 
     return (
         <div className="border-b border-gray-400">
