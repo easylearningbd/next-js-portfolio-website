@@ -18,12 +18,20 @@ const initialAboutFormData = {
     yearofexerience: "",
     noofclients: "",
     skills: ""
+};
+const initialExperienceFormData = {
+    position: "",
+    company: "",
+    duration: "",
+    location: "",
+    jobprofile: ""
 }
  
 export default function AdminView(){
     const [currentSeletedTab, setCurrentSeletedTab] = useState('home');
     const [homeViewFormData, setHomeViewFormData] = useState(initialHomeFormData);
     const [aboutViewFormData, setAboutViewFormData] = useState(initialAboutFormData);
+    const [experinceViewFormData, setExperinceViewFormData] = useState(initialExperienceFormData);
  
     const menuItem = [
         {
@@ -45,7 +53,10 @@ export default function AdminView(){
         {
             id: 'experience',
             lable: 'Experience',
-            component: <AdminExperienceView/>
+            component: <AdminExperienceView 
+            formData = {experinceViewFormData}
+            setFormData = {setExperinceViewFormData}
+            />
         },
         {
             id: 'education',
