@@ -10,7 +10,7 @@ import { useState } from "react"
 const initialHomeFormData = {
     heading: "",
     summary: ""
-};
+}; 
 
 const initialAboutFormData = {
     aboutme: "",
