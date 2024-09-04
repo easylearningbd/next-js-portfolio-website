@@ -30,6 +30,12 @@ const initialEducationFormData = {
     degree: "",
     year: "",
     college: "", 
+};
+const initialProjectFormData = {
+    name: "",
+    website: "",
+    technologies: "",
+    github: "", 
 }
  
 export default function AdminView(){
@@ -38,6 +44,7 @@ export default function AdminView(){
     const [aboutViewFormData, setAboutViewFormData] = useState(initialAboutFormData);
     const [experinceViewFormData, setExperinceViewFormData] = useState(initialExperienceFormData);
     const [educationViewFormData, setEducationViewFormData] = useState(initialEducationFormData);
+    const [projectViewFormData, setProjectViewFormData] = useState(initialProjectFormData);
  
     const menuItem = [
         {
@@ -75,7 +82,10 @@ export default function AdminView(){
         {
             id: 'project',
             lable: 'Project',
-            component: <AdminProjectView/>
+            component: <AdminProjectView 
+            formData = {projectViewFormData}
+            setFormData = {setProjectViewFormData}
+            />
         },
         {
             id: 'contact',
