@@ -10,11 +10,20 @@ import { useState } from "react"
 const initialHomeFormData = {
     heading: "",
     summary: ""
-}
+};
 
+const initialAboutFormData = {
+    aboutme: "",
+    noofprojects: "",
+    yearofexerience: "",
+    noofclients: "",
+    skills: ""
+}
+ 
 export default function AdminView(){
     const [currentSeletedTab, setCurrentSeletedTab] = useState('home');
     const [homeViewFormData, setHomeViewFormData] = useState(initialHomeFormData);
+    const [aboutViewFormData, setAboutViewFormData] = useState(initialAboutFormData);
  
     const menuItem = [
         {
@@ -28,7 +37,10 @@ export default function AdminView(){
         {
             id: 'about',
             lable: 'About Page',
-            component: <AdminAboutView/>
+            component: <AdminAboutView 
+            formData = {aboutViewFormData}
+            setFormData = {setAboutViewFormData}
+            />
         },
         {
             id: 'experience',
