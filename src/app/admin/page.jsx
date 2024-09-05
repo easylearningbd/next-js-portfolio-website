@@ -76,6 +76,7 @@ export default function AdminView(){
             formData = {experinceViewFormData}
             setFormData = {setExperinceViewFormData}
             handleSaveData={handleSaveData}
+            data={allData?.experience}
             />
         },
         {
