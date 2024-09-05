@@ -5,8 +5,8 @@ import AdminEducationView from "@/components/admin-view/education"
 import AdminExperienceView from "@/components/admin-view/experience"
 import AdminHomeView from "@/components/admin-view/home"
 import AdminProjectView from "@/components/admin-view/project"
-import { addData } from "@/services"
-import { useState } from "react"
+import { addData, getData } from "@/services"
+import { useEffect, useState } from "react"
 
 const initialHomeFormData = {
     heading: "",
@@ -46,6 +46,8 @@ export default function AdminView(){
     const [experinceViewFormData, setExperinceViewFormData] = useState(initialExperienceFormData);
     const [educationViewFormData, setEducationViewFormData] = useState(initialEducationFormData);
     const [projectViewFormData, setProjectViewFormData] = useState(initialProjectFormData);
+
+    const [allData, setAllData] = useState({});
  
     const menuItem = [
         { 
@@ -114,10 +116,44 @@ export default function AdminView(){
 
         if (response.success) {
             resetFormDatas();
-        }
-        
+            extractAllDatas();
+        } 
     }
 
+    useEffect(() => {
+        extractAllDatas();
+    },[currentSeletedTab]);
+
+    async function extractAllDatas() {
+        const response = await getData(currentSeletedTab);
+
+        if (
+            currentSeletedTab === "home" &&
+            response &&
+            response.data &&
+            response.data.length
+        ) {
+            setHomeViewFormData(response && response.data[0]);
+        }
+
+        if (
+            currentSeletedTab === "about" &&
+            response &&
+            response.data &&
+            response.data.length
+        ) {
+            setAboutViewFormData(response && response.data[0]);
+        }
+
+        if (response?.success) {
+            setAllData({
+                ...allData,
+                [currentSeletedTab]: response && response.data,
+            });
+        } 
+    }
+
+     
     function resetFormDatas(){
         setHomeViewFormData(initialHomeFormData);
         setAboutViewFormData(initialAboutFormData);
