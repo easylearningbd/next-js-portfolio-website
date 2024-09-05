@@ -86,6 +86,7 @@ export default function AdminView(){
             formData = {educationViewFormData}
             setFormData = {setEducationViewFormData}
             handleSaveData={handleSaveData}
+            data={allData?.education}
             />
         },
         {
@@ -95,6 +96,7 @@ export default function AdminView(){
             formData = {projectViewFormData}
             setFormData = {setProjectViewFormData}
             handleSaveData={handleSaveData}
+            data={allData?.project}
             />
         },
         {
