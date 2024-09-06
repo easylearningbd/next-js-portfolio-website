@@ -4,6 +4,7 @@ import AdminContactView from "@/components/admin-view/contact"
 import AdminEducationView from "@/components/admin-view/education"
 import AdminExperienceView from "@/components/admin-view/experience"
 import AdminHomeView from "@/components/admin-view/home"
+import Login from "@/components/admin-view/login"
 import AdminProjectView from "@/components/admin-view/project"
 import { addData, getData, updateData } from "@/services"
 import { useEffect, useState } from "react"
@@ -38,6 +39,10 @@ const initialProjectFormData = {
     technologies: "",
     github: "", 
 }
+const initialLoginFormData = {
+    username: "",
+    password: "", 
+}
  
 export default function AdminView(){
     const [currentSeletedTab, setCurrentSeletedTab] = useState('home');
@@ -49,6 +54,8 @@ export default function AdminView(){
 
     const [allData, setAllData] = useState({});
     const [update, setUpdate] = useState(false);
+    const [authUser, setAuthUser] = useState(false);
+    const [loginFormData, setLoginFormData] = useState(initialLoginFormData);
  
     const menuItem = [
         { 
@@ -169,6 +176,15 @@ export default function AdminView(){
         setEducationViewFormData(initialEducationFormData);
         setProjectViewFormData(initialProjectFormData);
     }
+
+    if (!authUser)
+        return (
+            <Login             
+            formData = {loginFormData}
+            setFormData = {setLoginFormData}
+            handleSaveData={handleSaveData}
+            />
+        );   
 
     return (
         <div className="border-b border-gray-400">
