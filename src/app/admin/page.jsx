@@ -6,7 +6,7 @@ import AdminExperienceView from "@/components/admin-view/experience"
 import AdminHomeView from "@/components/admin-view/home"
 import Login from "@/components/admin-view/login"
 import AdminProjectView from "@/components/admin-view/project"
-import { addData, getData, updateData } from "@/services"
+import { addData, getData, login, updateData } from "@/services"
 import { useEffect, useState } from "react"
 
 const initialHomeFormData = {
@@ -177,12 +177,26 @@ export default function AdminView(){
         setProjectViewFormData(initialProjectFormData);
     }
 
+    async function handleLogin() {
+        const res = await login(loginFormData);
+        console.log(res, "login");
+
+        if (res?.success) {
+            setAuthUser(true);
+            sessionStorage.setItem("authUser", JSON.stringify(true));
+        }
+    }
+
+    useEffect(() => {
+        setAuthUser(JSON.parse(sessionStorage.getItem("authUser")))
+    },[]);
+
     if (!authUser)
         return (
             <Login             
             formData = {loginFormData}
             setFormData = {setLoginFormData}
-            handleSaveData={handleSaveData}
+            handleLogin={handleLogin}
             />
         );   
 
