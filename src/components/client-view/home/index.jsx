@@ -3,6 +3,7 @@
 import { useMemo } from "react";
 import AnimationWrapper from "../animation-wrapper";
 import { motion } from 'framer-motion';
+import { FaFacebookF, FaLinkedinIn, FaInstagram, FaTwitter } from "react-icons/fa"
 
 function variants(){
     return {
@@ -20,6 +21,39 @@ function variants(){
         })
     } 
 }
+
+
+const socialIcons = [
+    {
+        id: "facebook",
+        icon: (
+            <FaFacebookF color="rgba(13, 183, 96, 1)" 
+            className="w-[40px] h-[40px]" />
+        )
+      },
+      {
+        id: "twitter",
+        icon: (
+            <FaTwitter color="rgba(13, 183, 96, 1)" 
+            className="w-[40px] h-[40px]" />
+        )
+      },
+      {
+        id: "linkedin",
+        icon: (
+            <FaLinkedinIn color="rgba(13, 183, 96, 1)" 
+            className="w-[40px] h-[40px]" />
+        )
+      },
+      {
+        id: "instagram",
+        icon: (
+            <FaInstagram color="rgba(13, 183, 96, 1)" 
+            className="w-[40px] h-[40px]" />
+        )
+      },
+]
+
 
 export default function ClientHomeView({data}){
 
@@ -47,6 +81,28 @@ export default function ClientHomeView({data}){
         <p className="text-gray-700 mt-4 mb-8 text-lg leading-relaxed">
             {data && data.length ? data[0]?.summary : null}
         </p>
+
+        <motion.div className="flex gap-4">
+            {socialIcons.map((item) => (
+                <motion.div
+                key={item.id}
+                initial={{ scale: 0 }}
+                animate={{ rotate: 360, scale: 1 }}
+                transition={{
+                    type: "spring",
+                    damping: 10,
+                    stiffness: 100,
+                    duration: 1.5,
+                }}
+                whileHover={{ scale: 1.1, rotate:360 }}
+                whileTap={{ scale: 0.9, rotate: -360, borderRadius: "100%" }}
+                className="cursor-pointer p-2 bg-white rounded-full shadow-lg"
+                >
+                    {item.icon}
+                </motion.div>
+            ))}
+
+        </motion.div>
 
         </div>
 
