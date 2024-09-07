@@ -85,7 +85,7 @@ export default function ClientExperienceAndEducationView({educationData,experien
                 <TimelineSeparator>
                     <TimelineDot className="bg-green-main" />
                     <TimelineConnector  className="bg-green-main" />  
-                    
+                     
                 </TimelineSeparator>
                 <TimelineContent>
                     <div className="border-[2px] p-4 rounded-[8px] border-green-main mt-[14px] ml-[16px]">
