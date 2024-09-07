@@ -41,6 +41,7 @@ export default function ClientAboutView({data}){
         }
     ]
 
+    const headingText = "Why Hire Me For Your Next Project";
 
 
     return(
@@ -75,7 +76,23 @@ export default function ClientAboutView({data}){
             </motion.div>
         ))}
         </AnimationWrapper>
-            </div>
+        </div>
+
+        <AnimationWrapper className={"pt-6"}>
+        <div className="flex flex-col justify-center items-center row-start-2 sm:row-start-1">
+            <h1 className="leading-[70px] mb-4 text-3xl lg:text-4xl xl:text-5xl font-medium">
+        {headingText.split(" ").map((item, index) => (
+            <span className={`${index === 5 ? "text-green-main" : "text-[#000]" }`}> {item}{" "} </span>
+        ))}
+            </h1>
+        <p className="text-[#000] mt-4 mb-8 font-bold"> {data?.aboutme} </p>
+
+        </div>
+        </AnimationWrapper>
+
+
+
+
 
         </div>
     )
