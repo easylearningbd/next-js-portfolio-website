@@ -3,6 +3,7 @@ import { useMemo, useRef } from "react";
 import AnimationWrapper from "../animation-wrapper";
 import { motion } from 'framer-motion';
 import Image from "next/image";
+import about from "../../../assets/about.png"
 
 function variants(){
     return {
@@ -20,6 +21,14 @@ function variants(){
         })
     } 
 }
+
+const skillItemVariant = {
+    hidden : { y: 20, opacity: 0},
+    visible: {
+        y: 0,
+        opacity: 1
+    }
+};
 
 export default function ClientAboutView({data}){
     console.log(data,'ClientAboutView');
@@ -85,10 +94,37 @@ export default function ClientAboutView({data}){
             <span className={`${index === 5 ? "text-green-main" : "text-[#000]" }`}> {item}{" "} </span>
         ))}
             </h1>
-        <p className="text-[#000] mt-4 mb-8 font-bold"> {data?.aboutme} </p>
-
+        <p className="text-[#000] mt-4 mb-8 font-bold"> {data?.aboutme} </p> 
         </div>
         </AnimationWrapper>
+
+        <div className="grid grid-flow-row sm:grid-flow-col grid-cols-1 sm:grid-cols-2 gap-8">
+            <AnimationWrapper className="flex w-full">
+                <motion.div variants={setVariants} className="h-full w-full p-4">
+                <Image
+                src={about}
+                alt="about image"
+                layout="responsive"
+                quality={100}
+                height={414}
+                width={508} 
+                />  
+                </motion.div> 
+            </AnimationWrapper>
+
+        <AnimationWrapper className={"flex items-center w-full p-4"}>
+            <motion.div variants={setVariants} className="grid gap-4 grid-cols-3 h-full max-h-[200px] w-full">
+        {data?.skills.split(",").map((skill) => (
+            <motion.div className="w-full flex justify-center items-center" variants={skillItemVariant}>
+                <button className="whitespace-nowrap text-ellipsis overflow-hidden py-3 w-[160px] px-6 border-[2px] border-green-main bg-[#fff] text-[#000] font-bold rounded-lg text-xl tracking-widest hover:shadow-green-main transition-all outline-none">{skill}</button>
+
+            </motion.div>
+        ))}
+            </motion.div>
+
+        </AnimationWrapper>
+
+        </div>
 
 
 
