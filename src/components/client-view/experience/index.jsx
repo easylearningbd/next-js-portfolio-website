@@ -21,10 +21,48 @@ export default function ClientExperienceAndEducationView({educationData,experien
             </div>
 
         </AnimationWrapper>
-            </div>
 
-        </div>
 
+    <AnimationWrapper>
+    <div className="flex w-full">
+    <motion.div className="container">
+        <Timeline position="right">
+        {experienceData && experienceData.length ? 
+        experienceData.map((experienceItem) => (
+            <TimelineItem>
+                <TimelineSeparator>
+                    <TimelineDot className="bg-green-main" />
+                    <TimelineConnector  className="bg-green-main" />  
+                    
+                </TimelineSeparator>
+                <TimelineContent>
+                    <div className="border-[2px] p-4 rounded-[8px] border-green-main mt-[14px] ml-[16px]">
+                <p className="font-bold">{ experienceItem.duration }</p>
+                <p className="font-extrabold mt-2">
+                    { experienceItem.company },{" "}
+                    { experienceItem.location}
+                    </p>
+                    <p className="font-extrabold mt-2">
+                    { experienceItem.position } 
+                    </p>
+                    <p className="font-bold mt-2">
+                    { experienceItem.jobprofile } 
+                    </p>
+                    </div>
+                </TimelineContent>
+            </TimelineItem>
+        )) : null }
+        </Timeline>
+    </motion.div>
+    </div>
+        
+    </AnimationWrapper>
+
+
+
+
+            </div> 
+        </div> 
     </div>
     )
 }
