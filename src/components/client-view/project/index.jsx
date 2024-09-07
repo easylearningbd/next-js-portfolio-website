@@ -34,13 +34,50 @@ export default function ClientProjectView({data}){
             pathLength={"1"}
             className="stroke-green-main"
             style={{ pathLength: scrollXProgress }}
-            />
+            /> 
+        </svg> 
+    </div> 
+</AnimationWrapper>
 
-        </svg>
+<AnimationWrapper>
+    <ul className="project-wrapper" ref={containerRef}>
+        {data && data.length ?
+        data.map((item, index) => (
+            <li className="w-full flex items-stretch cursor-pointer" key={index}>
+<div className="border-2 w-full relative border-green-main transition-all rounded-lg flex flex-col">
+    <div className="flex p-4 flex-col xl:flex-row w-full items-stretch xl:items-center">
+        <div className="flex order-2 xl:order-1">
+            <div className="flex flex-col">
+                <h3 className="text-3xl text-black-600 capitalize font-bold">{item.name}</h3>
+                <p className="text-sm mt-2 text-black-500 capitalize font-bold">{item.createdAt.split("T")[0]}</p>
+
+                <div className="grid gap-2 mt-5 grid-cols-2 h-full max-h-[200px] w-full">
+                    {item?.technologies.split(",").map((techItem) => (
+                        <div className="w-full flex justify-start items-center">
+                <button className="whitespace-nowrap text-ellipsis overflow-hidden py-3 w-[120px] px-6 border-[2px] border-green-main bg-[#fff] text-[#000] font-semibold rounded-lg text-xs tracking-widest hover:shadow-green-main transition-all outline-none" >
+                    {techItem}
+                </button>
+
+                        </div>
+                    ))}
+
+                </div>
+
+            </div>
+
+        </div>
 
     </div>
 
+</div>
+
+            </li>
+
+        )) : null }
+
+    </ul>
 </AnimationWrapper>
+
 
 
         </div>
