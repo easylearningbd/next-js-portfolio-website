@@ -61,16 +61,23 @@ export default function ClientProjectView({data}){
                         </div>
                     ))}
 
-                </div>
-
-            </div>
-
-        </div>
-
+                </div> 
+            </div> 
+        </div> 
     </div>
 
-</div>
+    <div className="absolute w-full bottom-0 justify-center flex gap-2">
+        <button onClick={() => router.push(item.website)} className="p-2 text-white-300 font-semibold text-[14px] tracking-widest bg-green-main transition-all outline-none">
+            Website
+        </button>
+        <button  onClick={() => router.push(item.github)} className="p-2 text-white-300 font-semibold text-[14px] tracking-widest bg-green-main transition-all outline-none">
+            Github
+        </button>
+    </div>              
 
+
+
+</div> 
             </li>
 
         )) : null }
