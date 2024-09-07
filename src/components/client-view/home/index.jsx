@@ -1,9 +1,11 @@
 'use client'
 
-import { useMemo } from "react";
+import { useMemo, useRef } from "react";
 import AnimationWrapper from "../animation-wrapper";
 import { motion } from 'framer-motion';
 import { FaFacebookF, FaLinkedinIn, FaInstagram, FaTwitter } from "react-icons/fa"
+import Image from "next/image";
+import home from "../../../assets/home.png"
 
 function variants(){
     return {
@@ -60,8 +62,7 @@ export default function ClientHomeView({data}){
     console.log(data,'ClientHomeView');
 
     const setVariants = useMemo(() => variants(), []);
-
-
+    const containerRef = useRef(null);
 
     return (
         <div className="max-w-screen-xl mt-24 px-8 xl:px-16 mx-auto" id="home">
@@ -102,11 +103,28 @@ export default function ClientHomeView({data}){
                 </motion.div>
             ))}
 
-        </motion.div>
-
+        </motion.div>  
         </div>
 
 
+        <motion.div ref={containerRef} className="felx w-full justify-end">
+            <motion.div
+            drag
+            dragConstraints={containerRef}
+            className="w-[400px] h-[400px] relative bg-green-main rounded-lg shadow-2xl"
+            >
+                <div className="w-[400px] h-[400px] top-[40px] left-[-30px] rounded-lg border-[6px] border-gray-800 absolute"> </div>
+                <Image
+                src={home}
+                alt="home image"
+                layout="responsive"
+                quality={100}
+                height={300}
+                width={300}
+                className="absolute top-[-15px] rounded-lg"
+                /> 
+            </motion.div> 
+        </motion.div> 
 
             </motion.div> 
         </AnimationWrapper> 
