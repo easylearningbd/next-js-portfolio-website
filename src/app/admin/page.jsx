@@ -94,6 +94,7 @@ export default function AdminView(){
             setFormData = {setEducationViewFormData}
             handleSaveData={handleSaveData}
             data={allData?.education}
+            setAllData={setAllData}
             />
         },
         {
