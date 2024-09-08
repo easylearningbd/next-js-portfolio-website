@@ -109,7 +109,9 @@ export default function AdminView(){
         {
             id: 'contact',
             lable: 'Contact',
-            component: <AdminContactView/>
+            component: <AdminContactView
+            data={allData && allData?.contact}
+            />
         }
     ]
 
