@@ -1,6 +1,7 @@
 'use client'
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AnimationWrapper from "../animation-wrapper";
+import { addData } from "@/services";
 
 const controls = [
     {
@@ -35,6 +36,25 @@ export default function ClientContactView(){
     const [formData, setFormData] = useState(initialFormData);
     const [showSuccessMessage, setShowSuccessMessage] = useState(false);
     
+    async function handleSendMessage(){
+        const res = await addData("contact",formData);
+        console.log(res,'contactres');
+
+        if (res && res.success) {
+            setFormData(initialFormData)
+            setShowSuccessMessage(true)
+        }
+    }
+
+    useEffect(() => {
+        if (showSuccessMessage) {
+            setTimeout(() => {
+                setShowSuccessMessage(false)
+            },1500)
+        }
+    })
+
+
     const isValidForm = () => {
         return formData &&
         formData.name !== "" &&
@@ -107,7 +127,7 @@ export default function ClientContactView(){
                     showSuccessMessage && <p className="text-[14px] font-bold my-[8px]">Your Message is successfully delivered</p>
                 }
         <div className="p-2 w-full">
-            <button disabled={!isValidForm()} className="disabled:opacity-50 py-3 lg:py-4 px-12 lg:px-16 text-white-500 font-semibold rounded-lg text-2xl tracking-widest bg-green-main outline-none">Send Message</button>
+            <button disabled={!isValidForm()} onClick={handleSendMessage} className="disabled:opacity-50 py-3 lg:py-4 px-12 lg:px-16 text-white-500 font-semibold rounded-lg text-2xl tracking-widest bg-green-main outline-none">Send Message</button>
         </div>
 
             </div>

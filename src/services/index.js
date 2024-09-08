@@ -7,7 +7,7 @@ export async function addData(currentTab,formData){
             },
             body: JSON.stringify(formData)
         });
-
+ 
         const result = await response.json();
         return result;
 
