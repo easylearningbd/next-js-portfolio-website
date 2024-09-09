@@ -66,19 +66,18 @@ export default function Navbar(){
     
     <nav className="max-w-screen-xl px-6 sm:px-8 lg:px-16 mx-auto grid grid-flow-col py-3 sm:py-4">
         <div className="col-start-1 col-end-2 flex items-center">
-            <div className="cursor-pointer flex gap-2 font-bold items-center text-[20px] text-green-main">
+            
 
-     <div style={{ width: "120px", height: "100px", position: "relative" }}>
-      <Image
+        <Image
         src={logo}
         alt="Logo"
+        layout="responsive"
         quality={100}
-        fill
-        style={{ objectFit: "contain" }} // Ensure proper scaling of image
-      />
-    </div>
+        height={100}
+        width={120}
+        />
 
-            </div> 
+            
         </div> 
     <ul className="hidden lg:flex col-start-4 col-end-8 text-[#000] items-center">
         <CreateMenus
