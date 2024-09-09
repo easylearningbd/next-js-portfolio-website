@@ -68,14 +68,15 @@ export default function Navbar(){
         <div className="col-start-1 col-end-2 flex items-center">
             <div className="cursor-pointer flex gap-2 font-bold items-center text-[20px] text-green-main">
 
-        <Image
+     <div style={{ width: "120px", height: "100px", position: "relative" }}>
+      <Image
         src={logo}
         alt="Logo"
-        layout="responsive"
         quality={100}
-        height={100}
-        width={120}
-        />
+        fill
+        style={{ objectFit: "contain" }} // Ensure proper scaling of image
+      />
+    </div>
 
             </div> 
         </div> 
